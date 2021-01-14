@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap');
+$azul-1: #8FD3E8;
 body {
     font-family: 'Chelsea Market', cursive;
     font-weight: 500;
+    background-color: $azul-1;
 }
 
-$azul-1: #8FD3E8;
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: $azul-1;
+}
+
+.container {
+    margin: 10px 50px 0px 50px;
 }

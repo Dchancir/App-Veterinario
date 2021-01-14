@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "veteri-app"
+  "defaultProject": "veteri-app",
+  "cli": {
+    "analytics": "3d5c91bb-22da-48fb-8135-8ba563cb839c"
+  }
 }

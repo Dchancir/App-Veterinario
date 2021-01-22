@@ -1,0 +1,13 @@
+<div class="container-filtro">
+    <div>
+        <h3>Filtro fechas</h3>
+    </div>
+    <div class="filtro_fechas">
+        <h3>Filtro prioridad</h3>
+        <div>
+            <select (change)="selectOption()" [(ngModel)]="prioridadSeleccionada">
+          <option *ngFor="let option of options" [ngValue]="option">{{option.name}}</option>
+           </select>
+        </div>
+    </div>
+</div>

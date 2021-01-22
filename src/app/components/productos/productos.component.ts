@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { fromEventPattern } from 'rxjs';
 
 @Component({
   selector: 'app-productos',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./productos.component.scss']
 })
 export class ProductosComponent implements OnInit {
+  public placeholder:string = "Buscar por nombre del producto ";
+  public boton:string = "Agregar Producto";
 
   constructor() { }
 

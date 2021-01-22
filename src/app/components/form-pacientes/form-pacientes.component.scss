@@ -1,0 +1,60 @@
+.myForm {
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    border-radius: 3px;
+    padding: 1em;
+}
+
+.row {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.data-group {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-group>label {
+    margin-right: 1em;
+    padding: .5em 0;
+}
+
+.input-group>textarea {
+    min-height: 250px;
+}
+
+.myForm input,
+.myForm select {
+    flex: 6;
+    padding: .5em;
+    margin-bottom: 1em;
+}
+
+.myForm button {
+    padding: 1em;
+    background: gray;
+    color: white;
+    border: 0;
+}
+
+.myForm fieldset {
+    border: 0;
+}
+
+.prioridad>label,
+.extras>label {
+    display: block;
+}

@@ -1,0 +1,11 @@
+<body>
+    <div class="search-container">
+        <form class="search-box">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" #search placeholder="{{placeholder}}" (keyup)="buscar(search.value)">
+        </form>
+        <div class="add-button">
+            <button (click)="agregarPaciente()">{{boton}}</button>
+        </div>
+    </div>
+</body>

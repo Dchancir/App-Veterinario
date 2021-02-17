@@ -1,63 +1,108 @@
-<form class="myForm" autocomplete="off" [formGroup]="forma" (ngSubmit)="agregar()">
+<form class="myForm" autocomplete="off" [formGroup]="forma" (ngSubmit)="submitForm()" novalidate>
+
+    <div class="row" *ngIf="forma?.invalid">
+        <h5 class="alert-message">El formulario es inválido</h5>
+    </div>
+
+    <div class="row" *ngIf="(this.id !== null)">
+        {{forma.value.nombre}}
+    </div>
 
     <div class="row">
         <div class="column">
             <div class="input-group">
-                <label for="customer_name">Nombre del paciente (o dueño) </label>
-                <input id="customer_name" type="text" formControlName="nombre">
+                <label for="customer_name">Nombre del paciente (o dueño) * </label>
+                <input id="customer_name" type="text" formControlName="nombre" name="nombre">
+                <div *ngIf="nombreNoValido()">
+                    <div *ngIf="this.forma.get('nombre').errors.required">
+                        <small class="alert-message">El nombre es requerido</small>
+                    </div>
+                    <div *ngIf="this.forma.get('nombre').errors.noCaracteres">
+                        <small class="alert-message">No se aceptan caracteres especiales</small>
+                    </div>
+                </div>
             </div>
 
-            <fieldset class="prioridad" formControlName="gravedad">
+            <div class="input" formGroupName="gravedad">
                 <legend>Parámetros de gravedad</legend>
-                <label> <input type="checkbox" id="fractura" value="fractura"> Posible fractura </label>
-                <label> <input type="checkbox" id="sangrado" value="sangrado"> Sangrado </label>
-                <label> <input type="checkbox" id="paciente_inconciente" value="inconsciente"> Paciente Inconsciente </label>
-                <label> <input type="checkbox" id="inmovilidad" value="inmovilidad"> Inmovilidad </label>
-            </fieldset>
+                <fieldset class="prioridad" *ngFor="let opcion of Parametros_Prioridad">
+                    <label> 
+                    <input type="checkbox"  [formControlName]="opcion?.value"  id="{{opcion?.value}}"> {{opcion?.text}}
+                </label>
+                </fieldset>
+            </div>
 
             <div class="input-group">
-                <label for="customer_name">Edad </label>
-                <div class="data-group">
-                    <input id="customer_name" type="text">
-                    <select id="pickup_place">
-                        <option value="years">Años</option>
-                        <option value="months" >Meses</option>
-                        <option value="days" >Días</option>
-                    </select>
+                <label for="edad">Edad </label>
+                <app-data id="edad" [opciones]="opcionesEdad" [dataForm]="getEdadForm()"></app-data>
+                <div *ngIf="edadNoValida()">
+                    <small class="alert-message">Debe llenar ambos campos</small>
                 </div>
             </div>
 
             <div class="input-group">
                 <label for="customer_name">Peso (en Kg) </label>
-                <input id="customer_name" type="text" placeholder="Ej: 5">
+                <input id="customer_name" type="number" placeholder="Ej: 5" formControlName="peso">
             </div>
         </div>
         <div class="column">
             <div class="input-group">
-                <label for="customer_name">Tipo de animal </label>
-                <input id="customer_name" type="text" placeholder="Ej: Perro, Gato">
+                <label for="customer_name">Tipo de animal * </label>
+                <input id="customer_name" type="text" placeholder="Ej: Perro, Gato" formControlName="tipo">
+                <div *ngIf="tipoNoValido()">
+                    <small class="alert-message">El tipo es requerido</small>
+                </div>
             </div>
             <div class="input-group">
-                <label for="customer_name">Duración de la cita </label>
-                <div class="data-group">
-                    <input id="customer_name" type="text">
-                    <select id="pickup_place">
-                        <option value="minutos">Minutos</option>
-                        <option value="horas" >Horas</option>
-                    </select>
+                <label for="duracion">Duración de la cita * </label>
+                <app-data id="duracion" [opciones]="opcionesDuracion" [dataForm]="getDuracionForm()"></app-data>
+                <div *ngIf="duracionNoValida()">
+                    <small class="alert-message">Son campos requeridos</small>
                 </div>
             </div>
 
             <div class="input-group">
                 <label for="msg">Descripción de síntomas</label>
-                <textarea id="msg"></textarea>
+                <textarea id="msg" formControlName="diagnostico"></textarea>
             </div>
         </div>
     </div>
 
-    <div class="row">
-
-        <button id="submit">Agregar Paciente</button>
-
+    <div class="row" *ngIf="id === null">
+        <button id="submit" [disabled]="forma?.invalid">Agregar Paciente</button>
     </div>
+
+    <div class="row" *ngIf="id !== null && isReadOnly">
+        <button id="submit">Editar Paciente</button>
+    </div>
+
+    <div class="row" *ngIf="id !== null && !isReadOnly">
+        <button id="submit" [disabled]="forma?.invalid">Guardar Paciente</button>
+    </div>
+
+
 </form>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close" (click)="cerrar()">&times;</span>
+        <p *ngIf="id !== null">Usuario editado</p>
+        <p *ngIf="id === null">Usuario agregado</p>
+        <button (click)="regresarPacientes()">Salir</button>
+    </div>
+
+</div>
+
+<br>
+<pre>
+    Estado del formulario: {{forma.valid}}
+    <br>
+    Status: {{forma.status}}
+</pre>
+
+<pre>
+    {{forma.value | json}}
+</pre>

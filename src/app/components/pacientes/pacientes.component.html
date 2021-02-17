@@ -1,5 +1,5 @@
-<app-search [placeholder]="placeholder" [boton]="boton" (busqueda)="buscarPacientes($event)"></app-search>
-<app-filtros (filtroSelect)="filtrarPrioridad($event)"></app-filtros>
+<app-search [placeholder]="placeholder" [boton]="boton" (busqueda)=" obtenerBusqueda($event)"></app-search>
+<app-filtros (filtroSelect)="obtenerPrioridad($event)"></app-filtros>
 <h3>{{palabra}}</h3>
 <div style="overflow-x:auto;">
     <table id="tabla">
@@ -11,13 +11,16 @@
             <th>Horario</th>
             <th>Opciones</th>
         </tr>
-        <tr *ngFor="let paciente of pacientesAux">
+        <tr *ngFor="let paciente of pacientesFiltrados">
             <td>{{paciente.nombre}}</td>
             <td>{{paciente.tipo}}</td>
             <td>{{paciente.prioridad}}</td>
-            <td>1/18/2021</td>
-            <td>{{paciente.duracion}}</td>
-            <td>{{50}}</td>
+            <td>{{paciente.fecha}}</td>
+            <td>{{paciente.duracionValor}} {{paciente.duracionMetrica}}</td>
+            <td>
+                <button (click)="verPaciente(paciente.idx)">Ver Paciente</button>
+            </td>
         </tr>
 
     </table>
+</div>

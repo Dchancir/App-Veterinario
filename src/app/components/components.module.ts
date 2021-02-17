@@ -10,11 +10,12 @@ import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormPacientesComponent } from './form-pacientes/form-pacientes.component';
 import { DatosComponent } from './shared/datos/datos.component';
+import { DataComponent } from './data/data.component';
 
 
 
 @NgModule({
-  declarations: [PacientesComponent, ProductosComponent, PacienteComponent, ImagenComponent, FiltrosComponent, SearchComponent, FormPacientesComponent, DatosComponent],
+  declarations: [PacientesComponent, ProductosComponent, PacienteComponent, ImagenComponent, FiltrosComponent, SearchComponent, FormPacientesComponent, DatosComponent, DataComponent],
   exports:[PacientesComponent, ProductosComponent, PacientesComponent, ImagenComponent],
   imports: [
     CommonModule,

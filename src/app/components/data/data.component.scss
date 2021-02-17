@@ -1,0 +1,11 @@
+.data-group {
+    display: flex;
+    flex-direction: row;
+}
+
+.dataForm input,
+.dataForm select {
+    flex: 6;
+    padding: .5em;
+    margin-bottom: 1em;
+}

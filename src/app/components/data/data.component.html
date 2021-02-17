@@ -1,0 +1,8 @@
+<form [formGroup]="dataForm" class="dataForm">
+    <div class="data-group">
+        <input id="{{id}}" type="number" formControlName="valor" min="1">
+        <select id="metrica" formControlName="metrica">
+            <option *ngFor="let opcion of opciones" [value]="opcion.value">{{opcion.text}}</option>
+        </select>
+    </div>
+</form>

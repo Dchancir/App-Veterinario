@@ -6,57 +6,102 @@ import { Injectable } from '@angular/core';
 export class PacienteService {
 
 
-  private PACIENTES:Paciente[] = [
+  public PACIENTES:any[] = [
     {
       nombre:"Rocky",
       diagnostico:"Tiene sangrado en los dientes",
       fecha:"1/14/2021",
+      gravedad: {
+        "fractura": false,
+        "sangrado":true,
+        "inconsciente": false,
+        "inmovilidad": false
+      },
       prioridad:"Sí",
-      edad:5,
-      duracion:15,
+      edadValor:5,
+      edadMetrica:'año(s)',
+      duracionValor:15,
+      duracionMetrica:'minuto(s)',
       peso:40,
-      tipo:"perro"
+      tipo:"perro",
+      idx:0
       
     },
     {
       nombre:"Rocky-II",
-      diagnostico:"Tiene sangrado en los dientes",
+      diagnostico:"Tiene sangrado en los dientes y fractura craneal",
       fecha:"1/14/2021",
+      gravedad: {
+        "fractura": true,
+        "sangrado":true,
+        "inconsciente": false,
+        "inmovilidad": false
+      },
       prioridad:"Sí",
-      edad:5,
-      duracion:15,
+      edadValor:9,
+      edadMetrica:'mes(es)',
+      duracionValor:1,
+      duracionMetrica:'hora(s)',
       peso:40,
-      tipo:"perro"
+      tipo:"perro",
+      idx:1
     },
     {
       nombre:"Rocky-III",
       diagnostico:"Tiene sangrado en los dientes",
       fecha:"1/14/2021",
+      gravedad: {
+        "fractura": false,
+        "sangrado":true,
+        "inconsciente": false,
+        "inmovilidad": false
+      },
       prioridad:"Sí",
-      edad:5,
-      duracion:15,
+      edadValor:9,
+      edadMetrica:'mes(es)',
+      duracionValor:1,
+      duracionMetrica:'hora(s)',
       peso:40,
-      tipo:"perro"
+      tipo:"perro",
+      idx:2
     },
     {
       nombre:"Rocky-IV",
-      diagnostico:"Tiene sangrado en los dientes",
+      diagnostico:"",
       fecha:"1/14/2021",
+      gravedad: {
+        "fractura": false,
+        "sangrado":false,
+        "inconsciente": false,
+        "inmovilidad": false
+      },
       prioridad:"No",
-      edad:5,
-      duracion:15,
+      edadValor:9,
+      edadMetrica:'mes(es)',
+      duracionValor:1,
+      duracionMetrica:'hora(s)',
       peso:40,
-      tipo:"perro"
+      tipo:"perro",
+      idx:3
     },
     {
       nombre:"Michi",
-      diagnostico:"Tiene sangrado en los dientes",
+      diagnostico:"",
       fecha:"1/14/2021",
+      gravedad: {
+        "fractura": false,
+        "sangrado":false,
+        "inconsciente": false,
+        "inmovilidad": false
+      },
       prioridad:"No",
-      edad:5,
-      duracion:15,
+      edadValor:9,
+      edadMetrica:'mes(es)',
+      duracionValor:1,
+      duracionMetrica:'hora(s)',
       peso:40,
-      tipo:"gato"
+      tipo:"gato",
+      idx:4
     }
   ];
 
@@ -64,20 +109,34 @@ export class PacienteService {
 
   }
 
-  getPacientes():Paciente[]{
-    return this.PACIENTES;
- }
+  addPacientes(paciente:any){
+    this.PACIENTES.push(paciente);
+  }
 
+  getPacientes():any[]{
+    return this.PACIENTES;
+  }
+
+  getPaciente(id:number){
+    return this.PACIENTES[id];
+  }
+
+  editarPaciente(paciente:Paciente, id:number){
+    this.PACIENTES[id] = paciente;
+  }
 
 }
 
 export interface Paciente {
   nombre:string,
   diagnostico?:string,
-  fecha:string,
+  fecha?:string,
+  gravedad:string[],
   prioridad:string,
-  edad?:number,
-  duracion:number,
+  edadValor?:number,
+  edadMetrica?:string,
+  duracionValor?:number,
+  duracionMetrica?:string,
   peso?:number,
   tipo:string,
   idx?:number

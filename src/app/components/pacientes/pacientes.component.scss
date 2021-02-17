@@ -19,3 +19,152 @@ th {
 td {
     background-color: whitesmoke;
 }
+
+@mixin estiloBoton($color) {
+    color: $color;
+    cursor: pointer
+}
+
+#verBoton {
+    @include estiloBoton(skyblue);
+}
+
+.button {
+    background-color: skyblue;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+
+.tooltip .right {
+    width: 75px;
+    top: 50%;
+    left: 50%;
+    margin-left: 20px;
+    padding: 4px 7px;
+    transform: translate(0, -50%);
+    color: #444444;
+    background-color: #FFFFFF;
+    font-weight: normal;
+    font-size: 10px;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 99999999;
+    box-sizing: border-box;
+    border: 1px solid #000000;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.tooltip:hover .right {
+    display: block;
+}
+
+$grey: #777;
+$grey2: #dfe3e4;
+$blue: #2183dd;
+$green: #009900;
+$white: #fff;
+.progress {
+    position: relative;
+    display: flex;
+}
+
+.progress-track {
+    position: absolute;
+    top: 7px;
+    margin-left: 17%;
+    width: 66%;
+    height: 4px;
+    background-color: $grey2;
+    z-index: -1;
+}
+
+// Each Step on the Progress Bar
+.progress-step {
+    position: relative;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    // Hide the final step's progress bar
+    &:last-child:after {
+        display: none;
+    }
+    &:before {
+        content: "\f00c";
+        display: flex;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        width: 20px;
+        height: 20px;
+        background: $white;
+        border: 4px solid $grey2;
+        border-radius: 100%;
+        color: transparent
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        top: 6px;
+        left: 50%;
+        width: 0%;
+        transition: width 1s ease-in;
+        height: 5px;
+        background: $grey2;
+        z-index: -1;
+    }
+    &.is-active {
+        &:before {
+            border: 4px solid $grey;
+            animation: pulse 2s infinite;
+        }
+    }
+    &.is-complete {
+        color: $green;
+        // Step's circle in complete state
+        &:before {
+            font-family: FontAwesome;
+            font-size: 10px;
+            color: $white;
+            background: $green;
+            border: 4px solid transparent;
+        }
+        // Step's progress bar in complete state
+        &:after {
+            animation: nextStep 1s;
+            animation-fill-mode: forwards;
+        }
+    }
+}
+
+// Pulse animation for Step's circle in active state
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(33, 131, 221, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(33, 131, 221, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(33, 131, 221, 0);
+    }
+}
+
+// Progressing to next step animation for Step's progress bar
+@keyframes nextStep {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+// Step's circle in default state
+// Step's progress bar in default state

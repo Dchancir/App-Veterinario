@@ -154,17 +154,12 @@ export class FormPacientesComponent implements OnInit {
     }
   }
 
-  check(paciente:any,option:string){
-    const parametro = paciente.gravedad[option];
-    return (paciente.gravedad[option] === true?true:false);
-
-  }
 
   //QUITAR ESTO
 
   submitForm(){
 
-    if (this.id || this.id >= 0) {
+    if (!this.id) {
       return this.agregarPaciente()
     }
 
@@ -172,7 +167,7 @@ export class FormPacientesComponent implements OnInit {
       return this.editarForm()
     }
 
-    return this.editarPaciente
+    return this.editarPaciente()
 
   }
 

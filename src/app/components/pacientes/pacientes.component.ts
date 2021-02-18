@@ -82,48 +82,5 @@ export class PacientesComponent implements OnInit {
     return pacientesAux;
   }
 
-  next() {
-    if (this.step === 'step1') {
-      this.step = 'step2';
-      this.step1.classList.remove("is-active");
-      this.step1.classList.add("is-complete");
-      this.step2.classList.add("is-active");
-  
-    } else if (this.step === 'step2') {
-      this.step = 'step3';
-      this.step2.classList.remove("is-active");
-      this.step2.classList.add("is-complete");
-      this.step3.classList.add("is-active");
-  
-    } else if (this.step === 'step3') {
-      this.step = 'complete';
-      this.step3.classList.remove("is-active");
-      this.step3.classList.add("is-complete");
-  
-    } else if (this.step === 'complete') {
-      this.step = 'step1';
-      this.step3.classList.remove("is-complete");
-      this.step2.classList.remove("is-complete");
-      this.step1.classList.remove("is-complete");
-      this.step1.classList.add("is-active");
-    }
-  }
-
-  previous() {
-     if (this.step === 'step2') {
-      this.step = 'step1';
-      this.step2.classList.remove("is-active");
-      this.step2.classList.remove("is-complete");
-      this.step1.classList.remove("is-complete");
-      this.step1.classList.add("is-active");
-  
-    } else if (this.step === 'step3') {
-      this.step = 'step2';
-      this.step3.classList.remove("is-active");
-      this.step3.classList.remove("is-complete");
-      this.step2.classList.remove("is-complete");
-      this.step2.classList.add("is-active");
-    } 
-  }
 }
 
